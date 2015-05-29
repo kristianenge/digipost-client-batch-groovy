@@ -5,16 +5,16 @@ public final class Constants{
 	public final static String csv_delimeter = ";";
 	public final static String encoding = "UTF-8";
 
-	public final static String sftp_bruker_id = 'prod_642903';//Demo Partner Test Prod
-	public final static String avsender_id =  '642903'; //Demo Partner test
-	public final static String behandler_id = ''; //'642903'; //Demo Partner test
-	public final static String jobb_navn = "job name"; //Change med before every shipmnent!
+	public final static String sftp_bruker_id = '';
+	public final static String avsender_id =  ''; 
+	public final static String behandler_id = ''; 
+	public final static String jobb_navn = "job name"; //Change me before every shipmnent!
 	public final static String dokument_emne = "";
 	public final static int sftpReceiptTimout = 3600000;
 	public final static String autoGodkjennJobb = true;
 
 	public final static String sourcePath = resourcePath+"source_data/";
-	public final static String source_file = sourcePath+""; //Change med before every shipmnent!
+	public final static String source_file = sourcePath+""; //Change me before every shipmnent!
 
 	public final static String zipFilePath = resourcePath+"toSFTP/";
 	public final static String zipFileName = "mottakersplitt.zip";
