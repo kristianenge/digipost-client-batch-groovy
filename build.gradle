@@ -1,0 +1,39 @@
+apply plugin: 'groovy'
+apply plugin: 'eclipse'
+apply plugin: 'idea'
+apply plugin:'application'
+
+sourceCompatibility = 1.8
+version = '1.0'
+jar {
+    manifest {
+        attributes 'Implementation-Title': 'Digipost batch', 'Implementation-Version': version
+    }
+}
+
+mainClassName = "digipost.gradle.resultManipulation"
+
+repositories {
+    mavenCentral()
+}
+
+
+dependencies {
+    compile 'org.codehaus.groovy:groovy-all:2.4.0-beta-4'
+    compile 'commons-collections:commons-collections:3.2'
+    compile 'com.jcraft:jsch:0.1.46'
+    testCompile 'junit:junit:4.+'
+    testCompile 'org.spockframework:spock-core:0.7-groovy-2.0'
+}
+
+test {
+    systemProperties 'property': 'value'
+}
+
+uploadArchives {
+    repositories {
+       flatDir {
+           dirs 'repos'
+       }
+    }
+}
