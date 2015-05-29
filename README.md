@@ -1,2 +1,2 @@
 
-radle cleanTest && gradle Test
+gradle cleanTest && gradle Test
