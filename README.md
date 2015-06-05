@@ -1,1 +1,2 @@
 
+gradle cleanTest && gradle Test
