@@ -3,9 +3,7 @@ import digipost.gradle.model.*
 
 class RawDataService{
 
-	public ArrayList populate_NameAndAdr_from_source_csv(Boolean skipHeader){ 
-		def doesntWork = new File(".").getCanonicalPath()
-		println doesntWork
+	public ArrayList getPersonsFromCSV(Boolean skipHeader){ 
 		ArrayList personList = new ArrayList();
 		boolean skip = skipHeader;
 		def counter = 1;
@@ -14,7 +12,6 @@ class RawDataService{
 		  		skip = false;
 		  	}
 		  	else if(fields[4] != null){
-//Brevtype; MedlemsNr ; Navn ;Født dato; Pnr ; Adresse ; Postadresse ; Land ;
 				def person = new Person(
 					ssn:formatSSN(fields[3],fields[4]),
 					kunde_id:fields[1],
@@ -58,7 +55,7 @@ class RawDataService{
 
 
 
-	public ArrayList populate_OrgNr_from_source_csv(Boolean skipHeader){ 
+	public ArrayList getOrganizationsFromCSV(Boolean skipHeader){ 
 		ArrayList orgList = new ArrayList();
 		boolean skip = skipHeader;
 		def counter = 1;
@@ -67,7 +64,6 @@ class RawDataService{
 		  		skip = false;
 		  	}
 		  	else if(fields[0] != null){
-//Kundenr;Fornavn;Etternavn;Adresse;Adresse2;Postnr;Poststed;Født;Kode
 				def organization = new Organization(
 					kunde_id:fields[0],
 					orgNumber:fields[1],

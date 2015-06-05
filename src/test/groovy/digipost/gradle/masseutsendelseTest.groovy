@@ -45,7 +45,7 @@ class masseutsendelseTest{
 		//3- update the People obj with digipost-customer
 		rmu.updateDigipostCustomers(personsList,resultat);
 		//4- make new csv with digipost column
-		fileUtil.writeSubjectToCSV(personsList);
+		fileUtil.writeResultToCSV(personsList);
 	}
 	
 }

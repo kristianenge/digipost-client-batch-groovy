@@ -19,7 +19,7 @@ class mottakerSplittTest{
 	void shouldDoMottakersplittPerson(){
 		fileUtil.cleanResources();
 		//1. populate ss from csv
-		def personsList = rawDataService.populate_NameAndAdr_from_source_csv(skipHeader);
+		def personsList = rawDataService.getPersonFromCSV(skipHeader);
 		if(personsList.size() == 0){
 			println('personList size: '+personsList.size())
 			fail("NO testsubject.. check source file.");
@@ -45,7 +45,7 @@ class mottakerSplittTest{
 		//3- update the People obj with digipost-customer
 		rmu.updateDigipostCustomers(personsList,resultat);
 		//4- make new csv with digipost column
-		fileUtil.writeSubjectToCSV(personsList);
+		fileUtil.writeResultToCSV(personsList);
 
 	}
 
@@ -53,7 +53,7 @@ class mottakerSplittTest{
 	void shouldDoMottakersplittBedrift(){
 		fileUtil.cleanResources();
 		//1. populate ss from csv
-		def orgList = rawDataService.populate_OrgNr_from_source_csv(skipHeader);
+		def orgList = rawDataService.getOrganizationsFromCSV(skipHeader);
 		
 		String request_xml = xmlUtil.makeMottakerSplittWithOrgNr(orgList);
 		//3. write mottakersplitt.xml to file

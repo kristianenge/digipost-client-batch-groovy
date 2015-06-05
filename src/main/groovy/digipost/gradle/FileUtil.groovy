@@ -50,13 +50,6 @@ class FileUtil {
 			}
 		}
 
-		sortedPathMap.each{ k, v -> 
-			if(!sortedRecieverMap.containsKey(k)){
-				println 'RecieverMap does not contain '+k
-			}
-		}
-
-
 		return sortedRecieverMap.equals(sortedPathMap)
 		
 	}
@@ -79,6 +72,17 @@ class FileUtil {
 	   			copy(f, new File(Constants.jobDir+jobtype.toString().toLowerCase()+'/'+f.getName()))
    			}
 	    }
+	}
+
+	def copy = { File src,File dest-> 
+	 
+		def input = src.newDataInputStream()
+		def output = dest.newDataOutputStream()
+	 
+		output << input 
+	 
+		input.close()
+		output.close()
 	}
 
 	public void cleanResources(){ 
@@ -110,7 +114,7 @@ class FileUtil {
 
 	
 
-	public void writeSubjectToCSV(ArrayList candidates){
+	public void writeResultToCSV(ArrayList candidates){
 		def file1 = new File(Constants.reportPath+jobtype.toString().toLowerCase()+'/'+jobtype.toString().toLowerCase()+'.csv')
 	    if(candidates.get(0) instanceof Person){
 			//file1.append('Social security number, kunde_id, ekstra_attr, resultat');
@@ -127,16 +131,7 @@ class FileUtil {
 
 	
 
-	def copy = { File src,File dest-> 
-	 
-		def input = src.newDataInputStream()
-		def output = dest.newDataOutputStream()
-	 
-		output << input 
-	 
-		input.close()
-		output.close()
-	}
+	
 	 
 	
 	public void zipFiles(){
@@ -244,7 +239,6 @@ class FileUtil {
 					break;
 			}
 
-			
 			sftp.disconnect()
 			disconnect()
 		}
@@ -295,7 +289,6 @@ class FileUtil {
 						if(entry.getFilename().contains('resultat'))
 							{
 								reciept = true;
-
 							}
 						if(entry.getFilename().contains('mottatt'))
 						{
