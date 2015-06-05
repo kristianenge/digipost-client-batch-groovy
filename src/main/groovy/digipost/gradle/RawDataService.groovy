@@ -3,7 +3,7 @@ import digipost.gradle.model.*
 
 class RawDataService{
 
-	public ArrayList getPersonsFromCSV(Boolean skipHeader){ 
+	public ArrayList getPeopleFromCSV(Boolean skipHeader){ 
 		ArrayList personList = new ArrayList();
 		boolean skip = skipHeader;
 		def counter = 1;
@@ -11,16 +11,10 @@ class RawDataService{
 			if(skip){
 		  		skip = false;
 		  	}
-		  	else if(fields[4] != null){
+		  	else if(fields[0] != null){
 				def person = new Person(
-					ssn:formatSSN(fields[3],fields[4]),
-					kunde_id:fields[1],
-					fil_navn:fields[1],
-					ekstra_attr:fields[1],
-					adresselinje1:fields[5],
-					postnummer:returnPostnummer(fields[6]),
-					poststed:returnPostSted(fields[6]),
-					fulltNavn:fields[2]
+					ssn:fields[0],
+					kunde_id:'id_'+(counter++)
 				);
 				personList.add(person)
 			}

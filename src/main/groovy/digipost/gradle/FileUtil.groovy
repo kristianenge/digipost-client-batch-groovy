@@ -89,20 +89,22 @@ class FileUtil {
 		println 'cleanFiles:::'
 		
 		new File(Constants.jobDir+jobtype.toString().toLowerCase()).eachFile() { f ->
-   			println 'jobfiles delete : '+ f;
-	      	 f.delete()
+	    	if(f.getName() != '.gitignore')
+	      		f.delete()
 	    }
 	    new File(Constants.resultPath+jobtype.toString().toLowerCase()).eachFile() { f ->
-	    	println 'resultPath delete';
-	      	 f.delete()
+	    	
+	    	if(f.getName() != '.gitignore')
+	      		f.delete()
 	    }
 	    new File(Constants.reportPath+jobtype.toString().toLowerCase()).eachFile() { f ->
-	    	println 'reportPath delete';
-	      	 f.delete()
+	    	
+	    	if(f.getName() != '.gitignore')
+	      		f.delete()
 	    }
 	     new File(Constants.zipFilePath+jobtype.toString().toLowerCase()).eachFile() { f ->
-	     	println 'zipFilePath delete';
-	      	 f.delete()
+	     	if(f.getName() != '.gitignore')
+	      		f.delete()
 	    }
 	}
 
@@ -128,11 +130,6 @@ class FileUtil {
 			}
 		}
 	}
-
-	
-
-	
-	 
 	
 	public void zipFiles(){
 		def zipFile;

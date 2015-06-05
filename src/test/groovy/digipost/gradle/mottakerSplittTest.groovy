@@ -1,6 +1,7 @@
 package digipost.gradle
 import static org.junit.Assert.*;
 import org.junit.Test
+import static groovy.json.JsonOutput.*
 
 
 class mottakerSplittTest{
@@ -10,16 +11,16 @@ class mottakerSplittTest{
 	def rmu =  new ResultManipulationUtil();
 	Boolean skipHeader = true;
 
-	@Test
+	//@Test
 	void cleanResources(){
 		fileUtil.cleanResources();
 	}
 
-	//@Test
+	@Test
 	void shouldDoMottakersplittPerson(){
 		fileUtil.cleanResources();
 		//1. populate ss from csv
-		def personsList = rawDataService.getPersonFromCSV(skipHeader);
+		def personsList = rawDataService.getPeopleFromCSV(skipHeader);
 		if(personsList.size() == 0){
 			println('personList size: '+personsList.size())
 			fail("NO testsubject.. check source file.");
@@ -41,6 +42,9 @@ class mottakerSplittTest{
 		//2- populate who exist in Digipost
 		def resultat = rawDataService.populateResultMapFromResult(JOBTYPE.MOTTAKERSPLITT);
 		println('Count source['+personsList.size()+'], count result['+resultat.size()+']')
+ 
+		println prettyPrint(toJson(resultat))
+
 
 		//3- update the People obj with digipost-customer
 		rmu.updateDigipostCustomers(personsList,resultat);
@@ -70,6 +74,7 @@ class mottakerSplittTest{
 		//2- populate who exist in Digipost
 		def resultat = rawDataService.populateResultMapFromResult(JOBTYPE.MOTTAKERSPLITT);
 		println('Count source['+orgList.size()+'], count result['+resultat.size()+']')
+
 
 		//3- update the People obj with digipost-customer
 		rmu.updateDigipostCustomers(orgList,resultat);

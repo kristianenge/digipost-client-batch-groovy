@@ -9,7 +9,7 @@ class masseutsendelseTest{
 	def rmu =  new ResultManipulationUtil();
 	Boolean skipHeader = true;
 
-	@Test
+	//@Test
 	void cleanResources(){
 		fileUtil.cleanResources();
 	}
@@ -18,7 +18,7 @@ class masseutsendelseTest{
 	void shouldDoMasseutsendelse(){
 		fileUtil.cleanResources();
 		//1. populate ss from csv
-		ArrayList personsList = rawDataService.populate_NameAndAdr_from_source_csv(skipHeader);
+		ArrayList personsList = rawDataService.getPeopleFromCSV(skipHeader);
 		//2. create masseutsendelse.xml
 		String request_xml = xmlUtil.makeMasseutsendelseWithPrint(personsList);
 		//3. write masseutsendelse.xml to file
