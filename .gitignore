@@ -2,7 +2,9 @@
 /build/
 /bin/
 /resources/key/*
+!/resources/key/
 /resources/source_data/*
+!/resources/source_data/
 .settings/
 .gradle/
 
